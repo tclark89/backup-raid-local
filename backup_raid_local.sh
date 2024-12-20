@@ -6,21 +6,15 @@ time_stamp=$(date '+%Y-%m-%d_%H-%M-%S')
 
 raid_live='/mnt/RAID'
 raid_backup='/mnt/raid_backup'
-#raid_backup='/mnt/offline_backup'
 
 raid_backup_snapshot_dir=${raid_backup}/snapshots
-raid_backup_snapshot_dir_new=/mnt/snapshots
 
-
-meagan_dir=/mnt/meagan
-virtual_machines_dir=/mnt/virtual_machines
+meagan_dir=/mnt/meagan/
+virtual_machines_dir=/mnt/virtual_machines/
 
 public_snap=${raid_backup_snapshot_dir}/public_${time_stamp}
 tyler_snap=${raid_backup_snapshot_dir}/tyler_${time_stamp}
 meagan_snap=${raid_backup_snapshot_dir}/meagan_${time_stamp}
-#virtual_machines_snap=${raid_live_snapshot_dir}/virtual_machines_${time_stamp}
-#torrents_snap=${raid_live_snapshot_dir}/torrents_${time_stamp}
-#time_machine_snap=${raid_live_snapshot_dir}/time_machine_${time_stamp}
 
 # FIGURE OUT MOUNT LOGIC/FLOW
 #mount /mnt/raid_backup
@@ -45,9 +39,6 @@ fi
 btrfs subvolume snapshot -r ${raid_backup}/public $public_snap
 btrfs subvolume snapshot -r ${raid_backup}/tyler $tyler_snap
 btrfs subvolume snapshot -r ${raid_backup}/meagan $meagan_snap
-#btrfs subvolume snapshot -r ${raid_backup}/virtual_machines $virtual_machines_snap
-#btrfs subvolume snapshot -r ${raid_backup}/torrents $torrents_snap
-#btrfs subvolume snapshot -r /mnt/timemachine $time_machine_snap
 
 
 # Rsync
@@ -98,12 +89,23 @@ rsync \
 	--delete-excluded
 
 rsync \
-	/mnt/RAID/timemachine \
-	${raid_backup}/timemachine \
+	/mnt/RAID/timemachine/ \
+	${raid_backup}/timemachine/ \
 	-aWSAXEH \
 	-vh \
-	--delete-delay \
-	--exclude='lost+found'
+	--delete-delay 
+
+rsync \
+	/srv/docker/nextcloud/html/ \
+	${raid_backup}/nextcloud/html/ \
+	-aWSAXEHh \
+	--delete-delay 
+
+rsync \
+	/srv/docker/nextcloud/data/ \
+	${raid_backup}/nextcloud/data/ \
+	-aWSAXEHh \
+	--delete-delay 
 
 
 # FIGURE OUT UNMOUNT LOGIC
