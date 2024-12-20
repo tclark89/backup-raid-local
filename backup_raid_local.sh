@@ -10,6 +10,9 @@ raid_backup='/mnt/raid_backup'
 
 raid_backup_snapshot_dir=${raid_backup}/snapshots
 
+
+meagan_dir=/mnt/meagan
+
 public_snap=${raid_backup_snapshot_dir}/public_${time_stamp}
 tyler_snap=${raid_backup_snapshot_dir}/tyler_${time_stamp}
 meagan_snap=${raid_backup_snapshot_dir}/meagan_${time_stamp}
@@ -39,7 +42,7 @@ fi
 # create snapshots. 
 btrfs subvolume snapshot -r ${raid_backup}/public $public_snap
 btrfs subvolume snapshot -r ${raid_backup}/tyler $tyler_snap
-btrfs subvolume snapshot -r ${raid_backup}/meagan $meagan_snap
+btrfs subvolume snapshot -r $meagan_dir $meagan_snap
 #btrfs subvolume snapshot -r ${raid_backup}/virtual_machines $virtual_machines_snap
 #btrfs subvolume snapshot -r ${raid_backup}/torrents $torrents_snap
 #btrfs subvolume snapshot -r /mnt/timemachine $time_machine_snap
@@ -65,13 +68,13 @@ rsync \
 	--exclude-from=${raid_live}/tyler/tyler-excludes 
 
 rsync \
-	${raid_live}/meagan/ \
+	$meagan_dir \
 	${raid_backup}/meagan/ \
 	-aWSAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
-	--exclude-from=${raid_live}/meagan/meagan-excludes 
+	--exclude-from=${meagan_dir}/meagan-excludes 
 
 rsync \
 	${raid_live}/virtual_machines/ \
