@@ -9,6 +9,7 @@ raid_backup='/mnt/raid_backup'
 #raid_backup='/mnt/offline_backup'
 
 raid_backup_snapshot_dir=${raid_backup}/snapshots
+raid_backup_snapshot_dir_new=/mnt/snapshots
 
 
 meagan_dir=/mnt/meagan
@@ -16,7 +17,7 @@ virtual_machines_dir=/mnt/virtual_machines
 
 public_snap=${raid_backup_snapshot_dir}/public_${time_stamp}
 tyler_snap=${raid_backup_snapshot_dir}/tyler_${time_stamp}
-meagan_snap=${raid_backup_snapshot_dir}/meagan_${time_stamp}
+meagan_snap=${raid_backup_snapshot_dir_new}/meagan_${time_stamp}
 #virtual_machines_snap=${raid_live_snapshot_dir}/virtual_machines_${time_stamp}
 #torrents_snap=${raid_live_snapshot_dir}/torrents_${time_stamp}
 #time_machine_snap=${raid_live_snapshot_dir}/time_machine_${time_stamp}
