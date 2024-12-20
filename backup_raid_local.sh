@@ -12,6 +12,7 @@ raid_backup_snapshot_dir=${raid_backup}/snapshots
 
 
 meagan_dir=/mnt/meagan
+virtual_machines_dir=/mnt/virtual_machines
 
 public_snap=${raid_backup_snapshot_dir}/public_${time_stamp}
 tyler_snap=${raid_backup_snapshot_dir}/tyler_${time_stamp}
@@ -77,13 +78,13 @@ rsync \
 	--exclude-from=${meagan_dir}/meagan-excludes 
 
 rsync \
-	${raid_live}/virtual_machines/ \
+	$virtual_machines_dir \
 	${raid_backup}/virtual_machines/ \
 	-aWSAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
-	--exclude-from=${raid_live}/virtual_machines/virtual_machines-excludes 
+	--exclude-from=${virtual_machines_dir}/virtual_machines-excludes 
 
 rsync \
 	${raid_live}/torrents/ \
