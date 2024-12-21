@@ -89,13 +89,6 @@ rsync \
 	--delete-excluded
 
 rsync \
-	/mnt/RAID/timemachine/ \
-	${raid_backup}/timemachine/ \
-	-aAXEH \
-	-vh \
-	--delete-delay 
-
-rsync \
 	/srv/docker/nextcloud/html/ \
 	${raid_backup}/nextcloud/html/ \
 	-aAXEHh \
@@ -107,6 +100,13 @@ rsync \
 	-aAXEHh \
 	--delete-delay 
 
+# Timemachine backup
+# it has to copy every file every time, so this is faster than rsyncing
+btrfs subvolume snapshot -r /mnt/timemachine /mnt/timemachine/tm_snapshot
+btrfs send /mnt/timemachine/tm_snapshot | btrfs receive ${raid_backup}
+btrfs subvolume delete ${raid_backup}/timemachine
+mv ${raid_backup}/tm_snapshot ${raid_backup}/timemachine
+btrfs subvolume delete /mnt/timemachine/tm_snapshot
 
 # FIGURE OUT UNMOUNT LOGIC
 if ! $backup_mounted 
