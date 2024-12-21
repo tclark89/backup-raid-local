@@ -85,7 +85,7 @@ rsync \
 	-vh \
 	--delete-delay \
 	--exclude='*.part' \
-	--exclude-from=/mnttorrents/torrents-excludes \
+	--exclude-from=/mnt/torrents/torrents-excludes \
 	--delete-excluded
 
 rsync \
