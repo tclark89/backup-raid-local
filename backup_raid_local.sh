@@ -79,7 +79,7 @@ rsync \
 	--exclude-from=${virtual_machines_dir}/virtual_machines-excludes 
 
 rsync \
-	${raid_live}/torrents/ \
+	/mnt/torrents/ \
 	${raid_backup}/torrents/ \
 	-aAXEH \
 	-vh \
