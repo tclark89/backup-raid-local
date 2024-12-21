@@ -43,13 +43,13 @@ btrfs subvolume snapshot -r ${raid_backup}/meagan $meagan_snap
 
 # Rsync
 rsync \
-	${raid_live}/public/ \
+	/mnt/public/ \
 	${raid_backup}/public/ \
 	-aAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
-	--exclude-from=${raid_live}/public/public-excludes 
+	--exclude-from=/mnt/public/public-excludes 
 
 rsync \
 	${raid_live}/tyler/ \
