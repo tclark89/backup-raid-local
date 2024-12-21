@@ -52,7 +52,7 @@ rsync \
 	--exclude-from=/mnt/public/public-excludes 
 
 rsync \
-	${raid_live}/tyler/ \
+	/mnt/tyler/ \
 	${raid_backup}/tyler/ \
 	-aAXEH \
 	-vh \

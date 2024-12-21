@@ -3,4 +3,4 @@ Description=Backup live RAID to backup disks
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash /usr/bin/local/backup_raid_local.sh
+ExecStart=/bin/bash /usr/local/bin/backup_raid_local.sh
