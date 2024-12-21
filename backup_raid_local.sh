@@ -45,7 +45,7 @@ btrfs subvolume snapshot -r ${raid_backup}/meagan $meagan_snap
 rsync \
 	${raid_live}/public/ \
 	${raid_backup}/public/ \
-	-aWSAXEH \
+	-aAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
@@ -54,7 +54,7 @@ rsync \
 rsync \
 	${raid_live}/tyler/ \
 	${raid_backup}/tyler/ \
-	-aWSAXEH \
+	-aAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
@@ -63,7 +63,7 @@ rsync \
 rsync \
 	$meagan_dir \
 	${raid_backup}/meagan/ \
-	-aWSAXEH \
+	-aAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
@@ -72,7 +72,7 @@ rsync \
 rsync \
 	$virtual_machines_dir \
 	${raid_backup}/virtual_machines/ \
-	-aWSAXEH \
+	-aAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
@@ -81,7 +81,7 @@ rsync \
 rsync \
 	${raid_live}/torrents/ \
 	${raid_backup}/torrents/ \
-	-aWSAXEH \
+	-aAXEH \
 	-vh \
 	--delete-delay \
 	--exclude='*.part' \
@@ -91,20 +91,20 @@ rsync \
 rsync \
 	/mnt/RAID/timemachine/ \
 	${raid_backup}/timemachine/ \
-	-aWSAXEH \
+	-aAXEH \
 	-vh \
 	--delete-delay 
 
 rsync \
 	/srv/docker/nextcloud/html/ \
 	${raid_backup}/nextcloud/html/ \
-	-aWSAXEHh \
+	-aAXEHh \
 	--delete-delay 
 
 rsync \
 	/srv/docker/nextcloud/data/ \
 	${raid_backup}/nextcloud/data/ \
-	-aWSAXEHh \
+	-aAXEHh \
 	--delete-delay 
 
 
