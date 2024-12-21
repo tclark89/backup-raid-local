@@ -58,7 +58,7 @@ rsync \
 	-vh \
 	--delete-delay \
 	--exclude='.snaphots' \
-	--exclude-from=${raid_live}/tyler/tyler-excludes 
+	--exclude-from=/mnt/tyler/tyler-excludes 
 
 rsync \
 	$meagan_dir \
@@ -85,7 +85,7 @@ rsync \
 	-vh \
 	--delete-delay \
 	--exclude='*.part' \
-	--exclude-from=${raid_live}/torrents/torrents-excludes \
+	--exclude-from=/mnttorrents/torrents-excludes \
 	--delete-excluded
 
 rsync \
