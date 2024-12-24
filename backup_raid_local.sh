@@ -89,7 +89,7 @@ rsync \
 	--delete-excluded
 
 rsync \
-	/mnt/RAID/timemachine/ \
+	/mnt/timemachine/ \
 	${raid_backup}/timemachine/ \
 	-aAXEH \
 	-vh \
