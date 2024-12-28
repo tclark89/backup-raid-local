@@ -108,7 +108,7 @@ rsync \
 	--delete-delay 
 
 # copy btrbk snapshots
-btrbk run
+btrbk resume -v
 
 # FIGURE OUT UNMOUNT LOGIC
 if ! $backup_mounted 
