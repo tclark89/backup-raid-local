@@ -107,6 +107,8 @@ rsync \
 	-aAXEHh \
 	--delete-delay 
 
+# copy btrbk snapshots
+btrbk run
 
 # FIGURE OUT UNMOUNT LOGIC
 if ! $backup_mounted 
