@@ -88,12 +88,12 @@ rsync \
 	--exclude-from=/mnt/torrents/torrents-excludes \
 	--delete-excluded
 
-rsync \
-	/mnt/timemachine/ \
-	${raid_backup}/timemachine/ \
-	-aAXEH \
-	-vh \
-	--delete-delay 
+#rsync \
+#	/mnt/timemachine/ \
+#	${raid_backup}/timemachine/ \
+#	-aAXEH \
+#	-vh \
+#	--delete-delay 
 
 rsync \
 	/srv/docker/nextcloud/html/ \
