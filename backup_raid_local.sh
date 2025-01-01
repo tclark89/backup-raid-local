@@ -36,10 +36,10 @@ fi
 
 # ONCE IT'S ALL MOUNTED AND GOOD
 # create snapshots. 
-btrfs subvolume snapshot -r ${raid_backup}/public $public_snap
-btrfs subvolume snapshot -r ${raid_backup}/tyler $tyler_snap
-btrfs subvolume snapshot -r ${raid_backup}/meagan $meagan_snap
-
+#btrfs subvolume snapshot -r ${raid_backup}/public $public_snap
+#btrfs subvolume snapshot -r ${raid_backup}/tyler $tyler_snap
+#btrfs subvolume snapshot -r ${raid_backup}/meagan $meagan_snap
+btrbk -c /etc/btrbk/btrbk_raid_backup.conf run -v
 
 # Rsync
 rsync \
