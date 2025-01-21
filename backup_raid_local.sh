@@ -95,17 +95,17 @@ rsync \
 #	-vh \
 #	--delete-delay 
 
-rsync \
-	/srv/docker/nextcloud/html/ \
-	${raid_backup}/nextcloud/html/ \
-	-aAXEHh \
-	--delete-delay 
-
-rsync \
-	/srv/docker/nextcloud/data/ \
-	${raid_backup}/nextcloud/data/ \
-	-aAXEHh \
-	--delete-delay 
+#rsync \
+#	/srv/docker/nextcloud/html/ \
+#	${raid_backup}/nextcloud/html/ \
+#	-aAXEHh \
+#	--delete-delay 
+#
+#rsync \
+#	/srv/docker/nextcloud/data/ \
+#	${raid_backup}/nextcloud/data/ \
+#	-aAXEHh \
+#	--delete-delay 
 
 # copy btrbk snapshots
 btrbk resume -v
