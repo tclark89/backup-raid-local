@@ -88,6 +88,13 @@ rsync \
 	--exclude-from=/mnt/torrents/torrents-excludes \
 	--delete-excluded
 
+rsync \
+	/mnt/backups/ \
+	${raid_backup}/backups/ \
+	-axxAXEH \
+	-vh \
+	--delete-delay 
+
 #rsync \
 #	/mnt/timemachine/ \
 #	${raid_backup}/timemachine/ \
