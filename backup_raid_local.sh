@@ -69,14 +69,14 @@ rsync \
 	--exclude='.snaphots' \
 	--exclude-from=${meagan_dir}/meagan-excludes 
 
-rsync \
-	$virtual_machines_dir \
-	${raid_backup}/virtual_machines/ \
-	-aAXEH \
-	-vh \
-	--delete-delay \
-	--exclude='.snaphots' \
-	--exclude-from=${virtual_machines_dir}/virtual_machines-excludes 
+#rsync \
+#	$virtual_machines_dir \
+#	${raid_backup}/virtual_machines/ \
+#	-aAXEH \
+#	-vh \
+#	--delete-delay \
+#	--exclude='.snaphots' \
+#	--exclude-from=${virtual_machines_dir}/virtual_machines-excludes 
 
 rsync \
 	/mnt/torrents/ \
