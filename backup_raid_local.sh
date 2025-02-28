@@ -93,6 +93,7 @@ rsync \
 	${raid_backup}/backups/ \
 	-axxAXEH \
 	-vh \
+	--exclude='fileserver/snapshots' \
 	--delete-delay 
 
 #rsync \
