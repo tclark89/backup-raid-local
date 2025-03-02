@@ -51,23 +51,23 @@ rsync \
 	--exclude='.snaphots' \
 	--exclude-from=/mnt/public/public-excludes 
 
-rsync \
-	/mnt/tyler/ \
-	${raid_backup}/tyler/ \
-	-aAXEH \
-	-vh \
-	--delete-delay \
-	--exclude='.snaphots' \
-	--exclude-from=/mnt/tyler/tyler-excludes 
+#rsync \
+#	/mnt/tyler/ \
+#	${raid_backup}/tyler/ \
+#	-aAXEH \
+#	-vh \
+#	--delete-delay \
+#	--exclude='.snaphots' \
+#	--exclude-from=/mnt/tyler/tyler-excludes 
 
-rsync \
-	$meagan_dir \
-	${raid_backup}/meagan/ \
-	-aAXEH \
-	-vh \
-	--delete-delay \
-	--exclude='.snaphots' \
-	--exclude-from=${meagan_dir}/meagan-excludes 
+#rsync \
+#	$meagan_dir \
+#	${raid_backup}/meagan/ \
+#	-aAXEH \
+#	-vh \
+#	--delete-delay \
+#	--exclude='.snaphots' \
+#	--exclude-from=${meagan_dir}/meagan-excludes 
 
 #rsync \
 #	$virtual_machines_dir \
