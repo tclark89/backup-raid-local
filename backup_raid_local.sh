@@ -2,19 +2,19 @@
 set -e
 
 # Set folder names
-time_stamp=$(date '+%Y-%m-%d_%H-%M-%S')
+#time_stamp=$(date '+%Y-%m-%d_%H-%M-%S')
 
-raid_live='/mnt/RAID'
+#raid_live='/mnt/RAID'
 raid_backup='/mnt/raid_backup'
 
-raid_backup_snapshot_dir=${raid_backup}/snapshots
+#raid_backup_snapshot_dir=${raid_backup}/snapshots
 
 meagan_dir=/mnt/meagan/
 virtual_machines_dir=/mnt/virtual_machines/
 
-public_snap=${raid_backup_snapshot_dir}/public_${time_stamp}
-tyler_snap=${raid_backup_snapshot_dir}/tyler_${time_stamp}
-meagan_snap=${raid_backup_snapshot_dir}/meagan_${time_stamp}
+#public_snap=${raid_backup_snapshot_dir}/public_${time_stamp}
+#tyler_snap=${raid_backup_snapshot_dir}/tyler_${time_stamp}
+#meagan_snap=${raid_backup_snapshot_dir}/meagan_${time_stamp}
 
 # FIGURE OUT MOUNT LOGIC/FLOW
 #mount /mnt/raid_backup
@@ -35,10 +35,7 @@ fi
 
 
 # ONCE IT'S ALL MOUNTED AND GOOD
-# create snapshots. 
-#btrfs subvolume snapshot -r ${raid_backup}/public $public_snap
-#btrfs subvolume snapshot -r ${raid_backup}/tyler $tyler_snap
-#btrfs subvolume snapshot -r ${raid_backup}/meagan $meagan_snap
+# create snapshots:
 btrbk -c /etc/btrbk/btrbk_raid_backup.conf run -v
 
 # Rsync
@@ -69,14 +66,6 @@ rsync \
 	--exclude='.snaphots' \
 	--exclude-from=${meagan_dir}/meagan-excludes 
 
-#rsync \
-#	$virtual_machines_dir \
-#	${raid_backup}/virtual_machines/ \
-#	-aAXEH \
-#	-vh \
-#	--delete-delay \
-#	--exclude='.snaphots' \
-#	--exclude-from=${virtual_machines_dir}/virtual_machines-excludes 
 
 rsync \
 	/mnt/torrents/ \
@@ -96,27 +85,9 @@ rsync \
 	--exclude='fileserver/snapshots' \
 	--delete-delay 
 
-#rsync \
-#	/mnt/timemachine/ \
-#	${raid_backup}/timemachine/ \
-#	-aAXEH \
-#	-vh \
-#	--delete-delay 
 
-#rsync \
-#	/srv/docker/nextcloud/html/ \
-#	${raid_backup}/nextcloud/html/ \
-#	-aAXEHh \
-#	--delete-delay 
-#
-#rsync \
-#	/srv/docker/nextcloud/data/ \
-#	${raid_backup}/nextcloud/data/ \
-#	-aAXEHh \
-#	--delete-delay 
 
-# copy btrbk snapshots
-btrbk resume -v
+
 
 # FIGURE OUT UNMOUNT LOGIC
 if ! $backup_mounted 
