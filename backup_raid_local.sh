@@ -6,6 +6,8 @@ set -e
 
 #raid_live='/mnt/RAID'
 raid_backup='/mnt/raid_backup'
+public_backup='mnt/public_backup'
+pesonal_backup='/mnt/personal_backup'
 
 #raid_backup_snapshot_dir=${raid_backup}/snapshots
 
@@ -38,7 +40,9 @@ fi
 # create snapshots:
 btrbk -c /etc/btrbk/btrbk_raid_backup.conf run -v
 
-# Rsync
+# Rsync directories
+# Public mergerfs pool
+# RAID Drives
 rsync \
 	/mnt/public/ \
 	${raid_backup}/public/ \
@@ -48,6 +52,8 @@ rsync \
 	--exclude='.snaphots' \
 	--exclude-from=/mnt/public/public-excludes 
 
+# /mnt/tyler 
+# Original RAID drives
 rsync \
 	/mnt/tyler/ \
 	${raid_backup}/tyler/ \
@@ -57,6 +63,18 @@ rsync \
 	--exclude='.snaphots' \
 	--exclude-from=/mnt/tyler/tyler-excludes 
 
+# Personal Backup Drive
+rsync \
+	/mnt/tyler/ \
+	${personal_backup}/tyler/ \
+	-aAXEH \
+	-vh \
+	--delete-delay \
+	--exclude='.snaphots' \
+	--exclude-from=/mnt/tyler/tyler-excludes 
+
+/mnt/meagan
+# Original RAID drives
 rsync \
 	$meagan_dir \
 	${raid_backup}/meagan/ \
@@ -66,7 +84,18 @@ rsync \
 	--exclude='.snaphots' \
 	--exclude-from=${meagan_dir}/meagan-excludes 
 
+# Personal Backup Drive
+rsync \
+	$meagan_dir \
+	${personal_backup}/meagan/ \
+	-aAXEH \
+	-vh \
+	--delete-delay \
+	--exclude='.snaphots' \
+	--exclude-from=${meagan_dir}/meagan-excludes 
 
+# /mnt/torrents
+# Original RAID drives
 rsync \
 	/mnt/torrents/ \
 	${raid_backup}/torrents/ \
@@ -77,6 +106,19 @@ rsync \
 	--exclude-from=/mnt/torrents/torrents-excludes \
 	--delete-excluded
 
+# Personal Backup Drive
+rsync \
+	/mnt/torrents/ \
+	${personal_backup}/torrents/ \
+	-aAXEH \
+	-vh \
+	--delete-delay \
+	--exclude='*.part' \
+	--exclude-from=/mnt/torrents/torrents-excludes \
+	--delete-excluded
+
+# Backups folder
+# Original RAID drives
 rsync \
 	/mnt/backups/ \
 	${raid_backup}/backups/ \
@@ -85,6 +127,14 @@ rsync \
 	--exclude='fileserver/snapshots' \
 	--delete-delay 
 
+# Personal Backup Drive
+rsync \
+	/mnt/backups/ \
+	${personal_backup}/backups/ \
+	-axxAXEH \
+	-vh \
+	--exclude='fileserver/snapshots' \
+	--delete-delay 
 
 
 
