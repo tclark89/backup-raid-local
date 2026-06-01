@@ -7,7 +7,7 @@ set -e
 #raid_live='/mnt/RAID'
 raid_backup='/mnt/raid_backup'
 public_backup='mnt/public_backup'
-pesonal_backup='/mnt/personal_backup'
+personal_backup='/mnt/personal_backup'
 
 #raid_backup_snapshot_dir=${raid_backup}/snapshots
 
