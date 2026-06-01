@@ -52,16 +52,16 @@ rsync \
 	--exclude='.snaphots' \
 	--exclude-from=/mnt/public/public-excludes 
 
-# /mnt/tyler 
+# tyler 
 # Original RAID drives
-# rsync \
-# 	/mnt/tyler/ \
-# 	${raid_backup}/tyler/ \
-# 	-aAXEH \
-# 	-vh \
-# 	--delete-delay \
-# 	--exclude='.snaphots' \
-# 	--exclude-from=/mnt/tyler/tyler-excludes 
+rsync \
+	/mnt/tyler/ \
+	${raid_backup}/tyler/ \
+	-aAXEH \
+	-vh \
+	--delete-delay \
+	--exclude='.snaphots' \
+	--exclude-from=/mnt/tyler/tyler-excludes 
 
 # Personal Backup Drive
 # rsync \
@@ -73,16 +73,16 @@ rsync \
 # 	--exclude='.snaphots' \
 # 	--exclude-from=/mnt/tyler/tyler-excludes 
 
-
+# meagan
 # Original RAID drives
-# rsync \
-# 	$meagan_dir \
-# 	${raid_backup}/meagan/ \
-# 	-aAXEH \
-# 	-vh \
-# 	--delete-delay \
-# 	--exclude='.snaphots' \
-# 	--exclude-from=${meagan_dir}/meagan-excludes 
+rsync \
+	$meagan_dir \
+	${raid_backup}/meagan/ \
+	-aAXEH \
+	-vh \
+	--delete-delay \
+	--exclude='.snaphots' \
+	--exclude-from=${meagan_dir}/meagan-excludes 
 
 # Personal Backup Drive
 # rsync \
