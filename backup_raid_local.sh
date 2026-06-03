@@ -4,6 +4,7 @@ set -e
 # Set folder names
 #time_stamp=$(date '+%Y-%m-%d_%H-%M-%S')
 
+# External backup dirs
 #raid_live='/mnt/RAID'
 raid_backup='/mnt/raid_backup'
 public_backup='mnt/public_backup'
@@ -11,7 +12,12 @@ personal_backup='/mnt/personal_backup'
 
 #raid_backup_snapshot_dir=${raid_backup}/snapshots
 
+# Live system dirs
 meagan_dir=/mnt/meagan/
+tyler_dir=/mnt/tyler/
+public_dir=/mnt/public/
+torrents_dir=/mnt/torrents/
+backups_dir=/mnt/backups/
 virtual_machines_dir=/mnt/virtual_machines/
 
 #public_snap=${raid_backup_snapshot_dir}/public_${time_stamp}
@@ -54,16 +60,18 @@ rsync \
 
 # tyler 
 # Original RAID drives
-rsync \
-	/mnt/tyler/ \
-	${raid_backup}/tyler/ \
-	-aAXEH \
-	-vh \
-	--delete-delay \
-	--exclude='.snaphots' \
-	--exclude-from=/mnt/tyler/tyler-excludes 
+# Moving to personal drive
+# rsync \
+# 	/mnt/tyler/ \
+# 	${raid_backup}/tyler/ \
+# 	-aAXEH \
+# 	-vh \
+# 	--delete-delay \
+# 	--exclude='.snaphots' \
+# 	--exclude-from=/mnt/tyler/tyler-excludes 
 
 # Personal Backup Drive
+# Not using, letting btrbk handle this
 # rsync \
 # 	/mnt/tyler/ \
 # 	${personal_backup}/tyler/ \
@@ -75,16 +83,18 @@ rsync \
 
 # meagan
 # Original RAID drives
-rsync \
-	$meagan_dir \
-	${raid_backup}/meagan/ \
-	-aAXEH \
-	-vh \
-	--delete-delay \
-	--exclude='.snaphots' \
-	--exclude-from=${meagan_dir}/meagan-excludes 
+# Moving to personal drive
+# rsync \
+# 	$meagan_dir \
+# 	${raid_backup}/meagan/ \
+# 	-aAXEH \
+# 	-vh \
+# 	--delete-delay \
+# 	--exclude='.snaphots' \
+# 	--exclude-from=${meagan_dir}/meagan-excludes 
 
 # Personal Backup Drive
+# Not using, letting btrbk handle this
 # rsync \
 # 	$meagan_dir \
 # 	${personal_backup}/meagan/ \
@@ -96,15 +106,16 @@ rsync \
 
 # /mnt/torrents
 # Original RAID drives
-rsync \
-	/mnt/torrents/ \
-	${raid_backup}/torrents/ \
-	-aAXEH \
-	-vh \
-	--delete-delay \
-	--exclude='*.part' \
-	--exclude-from=/mnt/torrents/torrents-excludes \
-	--delete-excluded
+# moving to personal backup drive
+# rsync \
+# 	/mnt/torrents/ \
+# 	${raid_backup}/torrents/ \
+# 	-aAXEH \
+# 	-vh \
+# 	--delete-delay \
+# 	--exclude='*.part' \
+# 	--exclude-from=/mnt/torrents/torrents-excludes \
+# 	--delete-excluded
 
 # Personal Backup Drive
 rsync \
@@ -119,13 +130,14 @@ rsync \
 
 # Backups folder
 # Original RAID drives
-rsync \
-	/mnt/backups/ \
-	${raid_backup}/backups/ \
-	-axxAXEH \
-	-vh \
-	--exclude='fileserver/snapshots' \
-	--delete-delay 
+# Not using, moving to personal backup drive
+# rsync \
+# 	/mnt/backups/ \
+# 	${raid_backup}/backups/ \
+# 	-axxAXEH \
+# 	-vh \
+# 	--exclude='fileserver/snapshots' \
+# 	--delete-delay 
 
 # Personal Backup Drive
 rsync \
